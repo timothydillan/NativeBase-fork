@@ -266,7 +266,7 @@ class Fab extends Component {
   upAnimate() {
     if (!this.props.active) {
       Animated.spring(this.containerHeight, {
-        toValue: this.state.buttons * 51.3 + variables.fabWidth,
+        toValue: 1,
         useNativeDriver: false
       }).start();
       Animated.spring(this.buttonScale, {
@@ -278,7 +278,7 @@ class Fab extends Component {
         active: false
       });
       Animated.spring(this.containerHeight, {
-        toValue: variables.fabWidth,
+        toValue: 0,
         useNativeDriver: false
       }).start();
       Animated.spring(this.buttonScale, {
@@ -291,7 +291,7 @@ class Fab extends Component {
   leftAnimate() {
     if (!this.props.active) {
       Animated.spring(this.containerWidth, {
-        toValue: this.state.buttons * 51.3 + variables.fabWidth,
+        toValue: 1,
         useNativeDriver: false
       }).start();
       Animated.spring(this.buttonScale, {
@@ -303,7 +303,7 @@ class Fab extends Component {
         active: false
       });
       Animated.spring(this.containerHeight, {
-        toValue: variables.fabWidth,
+        toValue: 0,
         useNativeDriver: false
       }).start();
       Animated.spring(this.buttonScale, {
@@ -316,7 +316,7 @@ class Fab extends Component {
   rightAnimate() {
     if (!this.props.active) {
       Animated.spring(this.containerWidth, {
-        toValue: this.state.buttons * 51.3 + variables.fabWidth,
+        toValue: 1,
         useNativeDriver: false
       }).start();
       Animated.spring(this.buttonScale, {
@@ -328,7 +328,7 @@ class Fab extends Component {
         active: false
       });
       Animated.spring(this.containerHeight, {
-        toValue: variables.fabWidth,
+        toValue: 0,
         useNativeDriver: false
       }).start();
       Animated.spring(this.buttonScale, {
@@ -341,7 +341,7 @@ class Fab extends Component {
   downAnimate() {
     if (!this.props.active) {
       Animated.spring(this.containerHeight, {
-        toValue: variables.fabWidth,
+        toValue: 1,
         useNativeDriver: false
       }).start();
       Animated.spring(this.buttonScale, {
@@ -353,7 +353,7 @@ class Fab extends Component {
         active: false
       });
       Animated.spring(this.containerHeight, {
-        toValue: variables.fabWidth,
+        toValue: 0,
         useNativeDriver: false
       }).start();
       Animated.spring(this.buttonScale, {
