@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import {
   Keyboard,
   Platform,
+  Dimensions,
   Animated,
   ViewPropTypes,
   PanResponder,
@@ -131,7 +132,9 @@ class ToastContainer extends Component {
       style: config.style,
       buttonTextStyle: config.buttonTextStyle,
       buttonStyle: config.buttonStyle,
-      textStyle: config.textStyle,
+      textStyle: config.textStyle ?? {
+        paddingLeft: Dimensions.get('window').width * 0.01
+      },
       onClose: config.onClose,
       swipeDisabled: config.swipeDisabled || false
     });
