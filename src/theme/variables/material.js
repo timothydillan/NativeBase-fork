@@ -2,7 +2,7 @@
 
 import color from 'color';
 import { Platform, Dimensions, PixelRatio } from 'react-native';
-import DeviceInfo from 'react-native-device-info';
+import * as Device from 'expo-device';
 import { PLATFORM } from './commonColor';
 
 const deviceHeight = Dimensions.get('window').height;
@@ -10,7 +10,7 @@ const deviceWidth = Dimensions.get('window').width;
 const platform = Platform.OS;
 const platformStyle = PLATFORM.MATERIAL;
 // isIphoneX basically checks whether the iOS device has a notch by detecting whether the iphone model is above or equal to 10 (X).
-const isIphoneX = PLATFORM.IOS && DeviceInfo.getDeviceId().replace(/^\D+/g, '').split(",")[0] >= 10 ? true : false;
+const isIphoneX = platform == PLATFORM.IOS && Device.modelId.replace(/^\D+/g, '').split(",")[0] >= 10 ? true : false;
 
 export default {
   platformStyle,
