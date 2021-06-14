@@ -12,15 +12,15 @@ export default class PickerNB extends Component {
   constructor(props) {
     super(props);
     // Receives placeholder-related attributes defined by the user, if any.
-    this.placeHolderText = typeof props.placeHolderText === 'string' ? props.placeHolderText : null;
-    this.placeHolderStyle = typeof props.placeHolderStyle === 'object' ? props.placeHolderStyle : null;
+    this.placeholder = props.placeholder && typeof props.placeholder === 'string' ? props.placeholder : null;
+    this.placeholderColor = props.placeholderColor && typeof props.placeholderColor === 'string' ? props.placeholderColor : "#c8c8cb";
   }
 
   render() {
-    const placeHolderText = this.placeHolderText;
+    const placeholderText = this.placeholder;
     return (
       <Picker ref={c => (this._root = c)} {...this.props}>
-        {placeHolderText !== null && <Picker.Item value='' label={placeHolderText} style={pickerStyles.placeHolderStyle} />}
+        {placeholderText !== null && <Picker.Item value={null} label={placeholderText} color={this.placeholderColor} />}
         {this.props.children}
       </Picker>
     );
@@ -43,12 +43,5 @@ const StyledPickerNB = connectStyle(
   {},
   mapPropsToStyleNames
 )(PickerNB);
-
-const pickerStyles = StyleSheet.create({
-  placeHolderStyle: this.placeHolderStyle ? this.placeHolderStyle
-    : {
-      color: "#c8c8cb"
-    }
-});
 
 export { StyledPickerNB as PickerNB };
