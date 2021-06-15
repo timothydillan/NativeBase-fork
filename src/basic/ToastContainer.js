@@ -89,9 +89,8 @@ class ToastContainer extends Component {
       if (this.state.isKeyboardVisible) {
         return this.state.keyboardHeight;
       }
-      return 30;
     }
-    return 0;
+    return 30;
   }
 
   getModalState() {
