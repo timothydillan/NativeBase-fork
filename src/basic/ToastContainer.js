@@ -3,10 +3,10 @@ import React, { Component } from 'react';
 import {
   Keyboard,
   Platform,
-  Dimensions,
   Animated,
   ViewPropTypes,
   PanResponder,
+  Dimensions
 } from 'react-native';
 import { connectStyle } from 'native-base-shoutem-theme';
 
@@ -14,7 +14,6 @@ import mapPropsToStyleNames from '../utils/mapPropsToStyleNames';
 import { PLATFORM } from '../theme/variables/commonColor';
 
 import { Text } from './Text';
-import { Button } from './Button';
 import { Toast } from './Toast';
 
 const POSITION = {
@@ -72,8 +71,11 @@ class ToastContainer extends Component {
   getToastStyle() {
     return {
       position: POSITION.ABSOLUTE,
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+      alignSelf: 'center',
       opacity: this.state.fadeAnim,
-      width: '100%',
       elevation: 9,
       paddingHorizontal: Platform.OS === PLATFORM.IOS ? 20 : 0,
       top: this.state.position === POSITION.TOP ? 30 : undefined,
@@ -92,15 +94,6 @@ class ToastContainer extends Component {
     return 0;
   }
 
-  getButtonText(buttonText) {
-    if (buttonText) {
-      if (buttonText.trim().length === 0) {
-        return undefined;
-      }
-      return buttonText;
-    }
-    return undefined;
-  }
   getModalState() {
     return this.state.modalVisible;
   }
@@ -125,16 +118,11 @@ class ToastContainer extends Component {
     this.setState({
       modalVisible: true,
       text: config.text,
-      buttonText: this.getButtonText(config.buttonText),
       type: config.type,
       position: config.position ? config.position : POSITION.BOTTOM,
       supportedOrientations: config.supportedOrientations,
       style: config.style,
-      buttonTextStyle: config.buttonTextStyle,
-      buttonStyle: config.buttonStyle,
-      textStyle: config.textStyle ?? {
-        paddingLeft: Dimensions.get('window').width * 0.01
-      },
+      textStyle: config.textStyle,
       onClose: config.onClose,
       swipeDisabled: config.swipeDisabled || false
     });
@@ -178,6 +166,17 @@ class ToastContainer extends Component {
     });
   }
 
+  clampedWidth() {
+    let width = this.state.text.length * 10;
+    const deviceWidth = Dimensions.get('window').width - 10;
+
+    if (width >= deviceWidth) {
+      width = 'auto';
+    }
+
+    return width;
+  }
+
   render() {
     if (this.state.modalVisible) {
       const { x, y } = this.state.pan;
@@ -190,22 +189,22 @@ class ToastContainer extends Component {
           ]}
         >
           <Toast
-            style={[this.state.style]}
+            style={[this.state.style, {
+              width: this.clampedWidth(),
+              borderRadius: 50
+            }]}
             danger={this.state.type === 'danger'}
             success={this.state.type === 'success'}
             warning={this.state.type === 'warning'}
           >
-            <Text style={this.state.textStyle}>{this.state.text}</Text>
-            {this.state.buttonText && (
-              <Button
-                style={this.state.buttonStyle}
-                onPress={() => this.closeToast('user')}
-              >
-                <Text style={this.state.buttonTextStyle}>
-                  {this.state.buttonText}
-                </Text>
-              </Button>
-            )}
+            <Text
+              numberOfLines={1} 
+              style={[this.state.textStyle, {
+                textAlignVertical: "center",
+                textAlign: "center"
+              }]}>
+              {this.state.text}
+            </Text>
           </Toast>
         </Animated.View>
       );
