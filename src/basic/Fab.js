@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   TouchableNativeFeedback,
   View,
-  StyleSheet
+  StyleSheet,
 } from 'react-native';
 import { remove, merge, clone } from 'lodash';
 import { connectStyle } from 'native-base-shoutem-theme';
@@ -148,9 +148,7 @@ class Fab extends Component {
         width: variables.fabButtonHeight,
         left: variables.fabButtonLeft,
         borderRadius: variables.fabButtonBorderRadius,
-        transform: this.state.active
-          ? [{ scale: new Animated.Value(1) }]
-          : [{ scale: this.buttonScale }],
+        transform: [{ scale: this.buttonScale }],
         marginBottom: variables.fabButtonMarginBottom,
         backgroundColor: variables.fabBackgroundColor
       }
@@ -266,7 +264,7 @@ class Fab extends Component {
   upAnimate() {
     if (!this.props.active) {
       Animated.spring(this.containerHeight, {
-        toValue: 1,
+        toValue: this.state.buttons * 51.3 + variables.fabWidth,
         useNativeDriver: false
       }).start();
       Animated.spring(this.buttonScale, {
@@ -278,7 +276,7 @@ class Fab extends Component {
         active: false
       });
       Animated.spring(this.containerHeight, {
-        toValue: 0,
+        toValue: variables.fabWidth,
         useNativeDriver: false
       }).start();
       Animated.spring(this.buttonScale, {
@@ -291,7 +289,7 @@ class Fab extends Component {
   leftAnimate() {
     if (!this.props.active) {
       Animated.spring(this.containerWidth, {
-        toValue: 1,
+        toValue: this.state.buttons * 51.3 + variables.fabWidth,
         useNativeDriver: false
       }).start();
       Animated.spring(this.buttonScale, {
@@ -303,7 +301,7 @@ class Fab extends Component {
         active: false
       });
       Animated.spring(this.containerHeight, {
-        toValue: 0,
+        toValue: variables.fabWidth,
         useNativeDriver: false
       }).start();
       Animated.spring(this.buttonScale, {
@@ -316,7 +314,7 @@ class Fab extends Component {
   rightAnimate() {
     if (!this.props.active) {
       Animated.spring(this.containerWidth, {
-        toValue: 1,
+        toValue: this.state.buttons * 51.3 + variables.fabWidth,
         useNativeDriver: false
       }).start();
       Animated.spring(this.buttonScale, {
@@ -328,7 +326,7 @@ class Fab extends Component {
         active: false
       });
       Animated.spring(this.containerHeight, {
-        toValue: 0,
+        toValue: variables.fabWidth,
         useNativeDriver: false
       }).start();
       Animated.spring(this.buttonScale, {
@@ -341,7 +339,7 @@ class Fab extends Component {
   downAnimate() {
     if (!this.props.active) {
       Animated.spring(this.containerHeight, {
-        toValue: 1,
+        toValue: variables.fabWidth,
         useNativeDriver: false
       }).start();
       Animated.spring(this.buttonScale, {
@@ -353,7 +351,7 @@ class Fab extends Component {
         active: false
       });
       Animated.spring(this.containerHeight, {
-        toValue: 0,
+        toValue: variables.fabWidth,
         useNativeDriver: false
       }).start();
       Animated.spring(this.buttonScale, {
@@ -469,7 +467,6 @@ class Fab extends Component {
           <TouchableOpacity
             onPress={() => this.fabOnPress()}
             {...this.prepareFabProps()}
-            activeOpacity={1}
           >
             {this.renderFab()}
           </TouchableOpacity>
