@@ -133,6 +133,7 @@ class SnackbarContainer extends Component {
         fontWeight: 'bold', 
         color: '#BF88FC'
       },
+      borderRadius: config.borderRadius || 5,
       buttonStyle: config.buttonStyle,
       textStyle: config.textStyle || {
         paddingLeft: 10,
@@ -194,7 +195,7 @@ class SnackbarContainer extends Component {
         >
           <Toast
             style={[this.state.style, {
-              borderRadius: 5
+              borderRadius: this.state.borderRadius
             }]}
             danger={this.state.type === 'danger'}
             success={this.state.type === 'success'}

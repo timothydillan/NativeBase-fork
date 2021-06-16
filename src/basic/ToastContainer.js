@@ -115,7 +115,7 @@ class ToastContainer extends Component {
       modalVisible: true,
       text: config.text,
       type: config.type,
-      borderRadius: config.borderRadius,
+      borderRadius: config.borderRadius || 50,
       position: config.position ? config.position : POSITION.BOTTOM,
       supportedOrientations: config.supportedOrientations,
       style: config.style,
@@ -188,7 +188,7 @@ class ToastContainer extends Component {
           <Toast
             style={[this.state.style, {
               width: this.clampedWidth(),
-              borderRadius: this.state.borderRadius || 50
+              borderRadius: this.state.borderRadius
             }]}
             danger={this.state.type === 'danger'}
             success={this.state.type === 'success'}
