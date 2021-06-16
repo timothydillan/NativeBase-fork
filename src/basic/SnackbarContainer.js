@@ -135,7 +135,8 @@ class SnackbarContainer extends Component {
       },
       buttonStyle: config.buttonStyle,
       textStyle: config.textStyle || {
-        paddingLeft: 10
+        paddingLeft: 10,
+        textTransform: 'uppercase'
       },
       onClose: config.onClose,
       swipeDisabled: config.swipeDisabled || false
@@ -206,7 +207,7 @@ class SnackbarContainer extends Component {
                 onPress={() => this.closeSnackbar('user')}
               >
                 <Text style={this.state.buttonTextStyle}>
-                  {this.state.buttonText.toUpperCase()}
+                  {this.state.buttonText}
                 </Text>
               </Button>
             )}
