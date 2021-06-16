@@ -5,13 +5,12 @@ import {
   Platform,
   Animated,
   ViewPropTypes,
-  PanResponder,
-  Dimensions
+  PanResponder
 } from 'react-native';
 import { connectStyle } from 'native-base-shoutem-theme';
 
 import mapPropsToStyleNames from '../utils/mapPropsToStyleNames';
-import { PLATFORM } from '../theme/variables/commonColor';
+import { PLATFORM, deviceWidth } from '../theme/variables/commonColor';
 
 import { Text } from './Text';
 import { Toast } from './Toast';
@@ -164,10 +163,10 @@ class ToastContainer extends Component {
   }
 
   clampedWidth() {
+    /* Clamps the width to 'auto' if the width of the toast component passes the width of the device. */
     let width = this.state.text.length * 10;
-    const deviceWidth = Dimensions.get('window').width - 10;
 
-    if (width >= deviceWidth) {
+    if (width >= deviceWidth - 10) {
       width = 'auto';
     }
 
