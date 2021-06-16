@@ -467,6 +467,7 @@ class Fab extends Component {
           <TouchableOpacity
             onPress={() => this.fabOnPress()}
             {...this.prepareFabProps()}
+            activeOpacity={this.props.activeOpacity || 0.2}
           >
             {this.renderFab()}
           </TouchableOpacity>

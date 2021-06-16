@@ -85,10 +85,8 @@ class ToastContainer extends Component {
   }
 
   getTop() {
-    if (Platform.OS === PLATFORM.IOS) {
-      if (this.state.isKeyboardVisible) {
-        return this.state.keyboardHeight;
-      }
+    if (Platform.OS === PLATFORM.IOS && this.state.isKeyboardVisible) {
+      return this.state.keyboardHeight;
     }
     return 30;
   }
