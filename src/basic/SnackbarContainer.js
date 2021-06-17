@@ -130,14 +130,14 @@ class SnackbarContainer extends Component {
       supportedOrientations: config.supportedOrientations,
       style: config.style,
       buttonTextStyle: config.buttonTextStyle || {
+        textTransform: 'uppercase',
         fontWeight: 'bold', 
         color: '#BF88FC'
       },
       borderRadius: config.borderRadius || 5,
       buttonStyle: config.buttonStyle,
       textStyle: config.textStyle || {
-        paddingLeft: 10,
-        textTransform: 'uppercase'
+        paddingLeft: 10
       },
       onClose: config.onClose,
       swipeDisabled: config.swipeDisabled || false
